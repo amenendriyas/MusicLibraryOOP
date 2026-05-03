@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Music Library Project started");
-
+        MusicItem item = new MusicItem("Test Song", "Test Artist", 3.5);
+        item.displayInfo();
     }
 }
