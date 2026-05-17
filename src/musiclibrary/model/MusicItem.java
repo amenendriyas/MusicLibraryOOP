@@ -1,3 +1,5 @@
+package musiclibrary.models;
+
 public class MusicItem {
    
     protected String title;

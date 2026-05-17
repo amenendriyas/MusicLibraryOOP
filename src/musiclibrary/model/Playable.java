@@ -1,4 +1,4 @@
 public interface Playable {
-    void play();
+    void play()
     
 }
