@@ -1,25 +1,85 @@
 package musiclibrary;
 
-import musiclibrary.model.MusicItem;
-import musiclibrary.model.Playable;
-import musiclibrary.model.Podcast;
+import java.util.Scanner;
+
 import musiclibrary.model.Song;
-import musiclibrary.managment.PlaylistManager;
+import musiclibrary.model.Podcast;
+import musiclibrary.managment.PlaylistManager; 
 
 public class Main {
+
     public static void main(String[] args) {
 
+        Scanner input = new Scanner(System.in);
         PlaylistManager manager = new PlaylistManager();
 
-        Song song1 = new Song("Nights ", "Frank Ocean", 5.06);
-        Song song2 = new Song("Feels Like Summer", "Childish Gambino", 5.0);
+        while (true) {
 
-        Podcast podcast1 = new Podcast ("The Future Mark Zuckerberg Is Trying To Build", "Cleo Abram", 47.0);
+            System.out.println("\n=== MUSIC LIBRARY MENU ===");
+            System.out.println("1. Add Song");
+            System.out.println("2. Add Podcast");
+            System.out.println("3. View Playlist");
+            System.out.println("4. Exit");
+            System.out.print("Choose option: ");
 
-        manager.addItem(song1);
-        manager.addItem(song2);
-        manager.addItem(podcast1);
+            int choice = 0;
 
-        manager.showPlaylist(); 
+            try{
+                choice = input.nextInt();
+                input.nextLine();
+            } catch (Exception e) {
+                System.out.println("Invalid input! Please enter a number. ");
+                input.nextLine(); // clear 
+                continue;
+            }
+
+            if (choice == 1) {
+
+                System.out.print("Enter song title: ");
+                String title = input.nextLine();
+
+                System.out.print("Enter artist: ");
+                String artist = input.nextLine();
+
+                System.out.print("Enter duration: ");
+                double duration = input.nextDouble();
+                input.nextLine();
+
+                Song song = new Song(title, artist, duration);
+                manager.addItem(song);
+
+            } 
+            else if (choice == 2) {
+
+                System.out.print("Enter podcast title: ");
+                String title = input.nextLine();
+
+                System.out.print("Enter host: ");
+                String host = input.nextLine();
+
+                System.out.print("Enter duration: ");
+                double duration = input.nextDouble();
+
+                System.out.print("Enter episode number: ");
+                int episode = input.nextInt();
+                input.nextLine();
+
+                Podcast podcast = new Podcast(title, host, duration, episode);
+                manager.addItem(podcast);
+
+            } 
+            else if (choice == 3) {
+                manager.showPlaylist();
+            } 
+            else if (choice == 4) {
+                System.out.println("Exiting...");
+                break;
+            } 
+            else {
+                System.out.println("Invalid choice. Try again.");
+            }
+        }
+
+        input.close();
     }
 }
