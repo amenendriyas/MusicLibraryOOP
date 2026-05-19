@@ -35,4 +35,3 @@ This project demonstrates the following OOP principles:
 
 ---
 
-## 📁 Project Structure
